@@ -28,6 +28,7 @@ header h1 {
   width: 220px; 
   background: #fff;
   border: 1px solid #ddd;
+  flex: 0 0 220px;
 }
 
 .album img {
@@ -51,5 +52,59 @@ header h1 {
 }
 
 .overlay {
- display: none;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.85);
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 2;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.album:hover .overlay {
+  display: flex;
+  opacity: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 24px;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f4f4f4;
+  width: calc(4 * 220px + 3 * 24px); /* 4 albums + 3 gaps */
+  margin: 0 auto;
+}
+
+/* Responsive: Stack albums vertically and make them wider on small screens */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 32px;
+    align-items: center;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+  .album {
+    width: 90vw;
+    max-width: 400px;
+    flex: 0 0 auto;
+  }
 }
